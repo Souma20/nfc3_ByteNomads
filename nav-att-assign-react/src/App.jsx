@@ -1,10 +1,11 @@
-// src/App.jsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './Components/Navbar';
 import Attendance from './Components/Attendance';
 import Assignment from './Components/Assignment';
 import HomePage from './Components/HomePage';
+import LoginForm from './Components/LoginForm';
+import RegisterForm from './Components/RegisterForm';
 
 function App() {
   return (
@@ -15,8 +16,9 @@ function App() {
           <Route path="/home" element={<HomePage />} />
           <Route path="/attendance" element={<Attendance />} />
           <Route path="/assignment" element={<Assignment />} />
-          {/* Default route to redirect to attendance page */}
-          <Route path="/" element={<Attendance />} />
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/register" element={<RegisterForm />} /> {/* Add a route for RegisterForm */}
+          <Route path="/" element={<Attendance />} /> {/* Default route */}
         </Routes>
       </div>
     </Router>

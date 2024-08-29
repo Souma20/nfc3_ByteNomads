@@ -59,4 +59,13 @@
   .file-upload-button:hover {
     background-color: rgb(31, 50, 215);
   }
-  
+  .assignment-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('https://images.pexels.com/photos/733857/pexels-photo-733857.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+  }

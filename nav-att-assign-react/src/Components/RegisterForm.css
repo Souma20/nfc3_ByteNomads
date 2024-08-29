@@ -1,0 +1,83 @@
+/* Centering the wrapper in the viewport */
+.wrapper {
+    width: 420px;
+    background: blue;
+    border: 2px solid black;
+    backdrop-filter: blur(30px);
+    color: #ffff;
+    border-radius: 20px;
+    padding: 30px 40px;
+    font-family: 'Courier New', Courier, monospace;
+    box-sizing: border-box; /* Ensures padding and border are included in the width */
+    margin: auto; /* Center horizontally */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center children horizontally */
+    justify-content: center; /* Center children vertically */
+    margin-top: 100px; /* Ensure the wrapper takes full viewport height */
+}
+
+.wrapper h1 {
+    font-size: 30px;
+    text-align: center;
+}
+
+.wrapper .input-box {
+    position: relative;
+    width: 100%;
+    height: 60px; /* Increased height to accommodate padding */
+    margin: 15px 0; /* Margin between input boxes */
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    border: 2px solid white;
+    background: transparent;
+    border-radius: 20px; /* Rounded corners */
+    font-size: 18px; /* Adjusted font size */
+    color: white;
+    padding: 10px 40px 10px 20px; /* Space inside the input */
+    font-family: 'Courier New', Courier, monospace;
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+.input-box input::placeholder {
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.input-box .icon {
+    position: absolute;
+    right: 15px; /* Position of the icon */
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+
+.wrapper button {
+    width: 100%;
+    height: 40px; /* Height of the button */
+    font-size: 18px; /* Font size of the button text */
+    border-radius: 20px; /* Rounded corners */
+    cursor: pointer;
+    background-color: skyblue;
+    color: white;
+    border: none;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.wrapper button:hover {
+    background-color: lightblue;
+}
+
+.wrapper .register-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.register-link p a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
