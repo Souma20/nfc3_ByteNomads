@@ -6,7 +6,7 @@ import Assignment from './Components/Assignment';
 import HomePage from './Components/HomePage';
 import LoginForm from './Components/LoginForm';
 import RegisterForm from './Components/RegisterForm';
-
+import './App.css';
 function App() {
   return (
     <Router>

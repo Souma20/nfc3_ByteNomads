@@ -1,71 +1,64 @@
-/* Assignment.css */
+/* src/Components/Assignment.css */
 
 /* Centering container */
 .assignment-wrapper {
-    display: flex;
-    justify-content: center; /* Centers horizontally */
-    align-items: center; /* Centers vertically */
-    height: 100vh; /* Full viewport height */
-  }
-  
-  .drop-container {
-    position: relative;
-    display: flex;
-    gap: 10px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 400px;
-    height: 400px;
-    padding: 20px;
-    border-radius: 10px;
-    border: 2px dashed #555;
-    color: #444;
-    cursor: pointer;
-    transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: white; /* Optional: add a background to the drop-container */
-  }
-  
-  .drop-container:hover {
-    background: #8ab1f5;
-    border-color: #111;
-  }
-  
-  .drop-container:hover .drop-title {
-    color: #222;
-  }
-  
-  .drop-title {
-    color: #444;
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-    transition: color 0.2s ease-in-out;
-  }
-  
-  .file-upload-button {
-    background-color: lightblue;
-    cursor: pointer;
-    padding: auto;
-    border-radius: 10px;
-    height: 40px;
-    width: 100px;
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-  }
-  
-  .file-upload-button:hover {
-    background-color: rgb(31, 50, 215);
-  }
-  .assignment-wrapper{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: url('https://images.pexels.com/photos/733857/pexels-photo-733857.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') no-repeat;
-    background-size: cover;
-    background-position: center;
-    
-  }
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center; /* Centers vertically */
+  height: 100vh; /* Full viewport height */
+}
+
+.drop-container {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 400px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px dashed #555;
+  color: #444;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: white; /* Optional: add a background to the drop-container */
+}
+
+.drop-container:hover {
+  background: #8ab1f5;
+  border-color: #111;
+}
+
+.drop-container:hover .drop-title {
+  color: #222;
+}
+
+.drop-title {
+  color: #444;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  transition: color 0.2s ease-in-out;
+}
+
+.file-upload-button {
+  background-color: lightblue;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 10px;
+  height: 40px;
+  width: 150px; /* Adjust width to fit text */
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  border: none; /* Remove default border */
+  text-align: center;
+  display: inline-block;
+}
+
+.file-upload-button:hover {
+  background-color: rgb(31, 50, 215);
+}

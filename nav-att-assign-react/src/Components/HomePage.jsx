@@ -16,7 +16,7 @@ function HomePage() {
       ) : (
         <>
           <h1>Attendance and Assignment Submission</h1>
-          <button onClick={handleSignUpClick}>Sign Up Here</button>
+          <button className='sign-up-button' onClick={handleSignUpClick}>Sign Up Here</button>
         </>
       )}
     </div>
