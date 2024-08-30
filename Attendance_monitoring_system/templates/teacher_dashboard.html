@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: 'Lexend Exa', sans-serif;
+            background: url("{{ url_for('static', filename='bg1.png') }}") no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        nav {
+            position: fixed;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 30px;
+            background-color: #0099CC;
+            border: 2px solid #EBECF1;
+            border-radius: 30px;
+            z-index: 1000;
+        }
+
+        nav ul {
+            display: flex;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-right: 40px;
+        }
+
+        nav ul li a {
+            color: #F9F8FD;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 10px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #EC4138;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .dashboard-box {
+            background-color: rgba(0, 0, 0, 0.6);
+            margin-top: 25%;
+            padding: 1em;
+            color: #fff;
+            border-radius: 10px;
+            box-shadow: 2px 2px 15px 0px rgba(0, 3, 0, 0.7);
+        }
+
+        .dashboard-title {
+            text-align: center;
+            margin-bottom: 2em;
+        }
+
+        select {
+            display: block;
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .class-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .class-list-item {
+            margin-bottom: 10px;
+        }
+
+        .class-link {
+            display: inline-block;
+            padding: 8px;
+            background-color: #eee;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .class-link:hover {
+            background-color: #ddd;
+        }
+
+        .add-class-link {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .add-class-link:hover {
+            background-color: #0056b3;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            text-align: center;
+            margin-top: 60px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/teacher/teacher_profile">Profile</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+    <h1><strong>Teacher Dashboard</strong></h1>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="dashboard-box">
+                    <h2 class="dashboard-title">Mark Attendance</h2>
+                    <select id="class-section-select">
+                        <option value="" disabled selected>Select Class Section</option>
+                        {% set addedSections = [] %}
+                        {% for class in classes %}
+                            {% if class[2] == session['username'] and class[3] not in addedSections %}
+                                <option value="{{ class[3] }}">{{ class[3] }}</option>
+                                {% set _ = addedSections.append(class[3]) %}
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+
+                    <ul id="class-links" class="class-list" style="display: none;"></ul>
+
+                    <br>
+                    <div class="text-center">
+                        <a class="add-class-link" href="/teacher/add_class">Add Class</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const classSectionSelect = document.getElementById('class-section-select');
+        const classLinks = document.getElementById('class-links');
+        const sessionUsername = "{{ session['username'] | tojson | safe }}";
+
+        classSectionSelect.addEventListener('change', function() {
+            const selectedSection = this.value;
+            showClassLinks(selectedSection);
+        });
+
+        function showClassLinks(selectedSection) {
+            if (selectedSection) {
+                classLinks.style.display = 'block';
+                classLinks.innerHTML = '';
+
+                const classes = JSON.parse('{{ classes | tojson | safe }}');
+                for (let i = 0; i < classes.length; i++) {
+                    if (classes[i][2] === sessionUsername && classes[i][3] === selectedSection) {
+                        const classLink = document.createElement('li');
+                        classLink.className = 'class-list-item';
+                        const link = document.createElement('a');
+                        link.className = 'class-link';
+                        link.href = '/teacher/mark_attendance/' + classes[i][0];
+                        link.innerText = classes[i][1];
+                        classLink.appendChild(link);
+                        classLinks.appendChild(classLink);
+                    }
+                }
+            } else {
+                classLinks.style.display = 'none';
+                classLinks.innerHTML = '';
+            }
+        }
+    </script>
+</body>
+</html>
