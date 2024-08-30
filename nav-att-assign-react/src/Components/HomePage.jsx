@@ -15,8 +15,11 @@ function HomePage() {
         <LoginForm /> // Render LoginForm if showLoginForm is true
       ) : (
         <>
+        <div className='home-content'>
           <h1>Attendance and Assignment Submission</h1>
+          <p>Easily track attendance and manage assignment submissions in real-time. Enjoy quick access and detailed insights to improve educational management and boost student performance.</p>
           <button className='sign-up-button' onClick={handleSignUpClick}>Sign Up Here</button>
+          </div>
         </>
       )}
     </div>

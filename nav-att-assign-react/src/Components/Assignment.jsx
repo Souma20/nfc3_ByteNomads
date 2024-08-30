@@ -29,6 +29,7 @@ function Assignment() {
       .then((data) => {
         console.log('Success:', data);
         alert('File uploaded successfully!');
+        alert('Assignment submitted!'); // Add this alert to indicate assignment submission
       })
       .catch((error) => {
         console.error('Error:', error);
