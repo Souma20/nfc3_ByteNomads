@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mark Attendance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #b3d4e1;
+        }
+        
+        h2 {
+            color: #333;
+            text-align: center;
+        }
+        
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 15px 0px rgba(0, 0, 0, 0.7);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="checkbox"],
+        .submit-button {
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .attendance-checkbox {
+            margin-right: 10px;
+        }
+
+        .submit-button {
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .submit-button:hover {
+            background-color: #0056b3;
+        }
+
+        .nav {
+            margin: 0;
+            padding: 10px;
+            background-color: #0099CC;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .nav a {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-left: 20px;
+        }
+
+        .nav a:hover {
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h2>Mark Attendance</h2>
+    <div class="nav">
+        <a class="dash-link" href="/teacher/dashboard">Dashboard</a>
+        <a class="profile-link" href="/teacher/teacher_profile">Profile</a>
+        <a class="logout-link" href="/logout">Logout</a>
+    </div>
+    <form method="POST" action="{{ url_for('update_attendance', class_id=class_id) }}">
+        <label for="class_date">Class Date:</label>
+        <input type="text" id="class_date" name="class_date" value="{{ class_date }}" disabled><br>
+        <label for="class_name">Class Name:</label>
+        <input type="text" id="class_name" name="class_name" value="{{ class_name }}" disabled><br>
+        <label for="class_sec">Class Section:</label>
+        <input type="text" id="class_sec" name="class_sec" value="{{ class_sec }}" disabled><br>
+        <table>
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Student Name</th>
+                    <th>Attendance</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <td>{{ student[0] }}</td>
+                    <td>{{ student[1] }}</td>
+                    <td>
+                        <input type="checkbox" name="attendance" value="{{ student[0] }}">
+                    </td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="3">
+                        <label for="select-all-checkbox">Select All:</label>
+                        <input type="checkbox" id="select-all-checkbox">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <input type="submit" value="Submit" class="submit-button">
+    </form>    
+    <script>
+        document.getElementById('select-all-checkbox').addEventListener('change', function () {
+            var checkboxes = document.querySelectorAll('input[name="attendance"]');
+            for (var checkbox of checkboxes) {
+                checkbox.checked = this.checked;
+            }
+        });
+    </script>
+</body>
+</html>
