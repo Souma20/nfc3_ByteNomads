@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+    <style>
+        body {
+            background: url("{{ url_for('static', filename='bg1.png') }}") no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Lexend Exa', sans-serif;
+        }
+        nav {
+            position: fixed;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 30px;
+            background-color: #0099CC;
+            border: 2px solid #EBECF1;
+            border-radius: 30px;
+            z-index: 1000;
+        }
+
+        nav ul {
+            display: flex;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-right: 40px;
+        }
+
+        nav ul li a {
+            color: #F9F8FD;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 10px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #EC4138;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .wrapper {
+            width: 420px;
+            background: transparent;
+            border: 2px solid black;
+            backdrop-filter: blur(30px);
+            color: black;
+            border-radius: 20px;
+            padding: 30px 40px;
+            margin-top: 125px;
+            margin-left: auto; 
+            margin-right: auto;
+        }
+
+        .profile-box {
+            background-color: rgba(0, 0, 0, 0.6);
+            margin-top: 45px;
+            padding: 1em;
+            color: #fff;
+            border-radius: 10px;
+            box-shadow: 2px 2px 15px 0px rgba(0, 3, 0, 0.7);
+        }
+
+        .profile-title {
+            text-align: center;
+            margin-bottom: 2em;
+        }
+
+        form {
+            background-color: rgba(131, 169, 218, 0.6);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            border: 2px solid black;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            background: transparent;
+            font-family: 'Courier New', Courier, monospace;
+            color: black;
+        }
+
+        input[type="text"]::placeholder,
+        input[type="email"]::placeholder {
+            color: black;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        input[type="submit"] {
+            padding: 8px 16px;
+            background-color: skyblue;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        input[type="submit"]:hover {
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/teacher/dashboard">Dashboard</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+    
+    <div class="wrapper">
+        <h2 class="profile-title">Profile</h2>
+        <div class="profile-box">
+            <p><strong>Name:</strong> {{ profile_data[0] }}</p>
+            <p><strong>Email:</strong> {{ profile_data[1] }}</p>
+            <p><strong>Phone:</strong> {{ profile_data[2] }}</p>
+        </div>
+        
+        <h3>Update Profile</h3>
+        <form method="POST" action="/teacher/update_profile">
+            <label for="name">Name:</label>
+            <div class="input-box">
+                <input type="text" id="name" name="name" value="{{ profile_data[0] }}" required>
+            </div>
+            <label for="email">Email:</label>
+            <div class="input-box">
+                <input type="email" id="email" name="email" value="{{ profile_data[1] }}" required>
+            </div>
+            <label for="phone">Phone:</label>
+            <div class="input-box">
+                <input type="text" id="phone" name="phone" value="{{ profile_data[2] }}" required>
+            </div>
+            <input type="submit" value="Update">
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+</body>
+</html>
